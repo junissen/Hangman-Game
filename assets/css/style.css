@@ -21,7 +21,7 @@ body {
   	padding-bottom: 0px;
   	margin-bottom: 0px;
   	transform-origin:50% 100%;
-    transform:perspective(300px) rotateX(20deg);
+    transform: perspective(300px) rotateX(20deg);
 
 }
 
