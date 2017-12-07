@@ -1,0 +1,54 @@
+body {
+	background-image: url("../images/darkness.png");
+}
+
+
+#title {
+	background-image: url("../images/darkness.png");
+
+}
+
+#title_1{
+	font-family: 'Pathway Gothic One', sans-serif;
+	color: #feda4a;
+	font-size: 800%;
+  	font-weight: 600;
+  	letter-spacing: 6px;
+  	line-height: 150%;
+  	perspective: 400px;
+  	text-align: center;
+  	padding: 0px;
+  	padding-bottom: 0px;
+  	margin-bottom: 0px;
+
+}
+
+#title_2 {
+	color: #ffffff;
+	font-size: 200%;
+	padding: 0px;
+	margin-top: 0px;
+}
+
+
+.container {
+	font-family: 'Montserrat', sans-serif;
+	color: #ffffff;
+	font-size: 20px;
+	padding-bottom: 100px;
+}
+
+#new_image {
+	width: 90%;
+	padding-left: 40px;
+}
+
+#new_text {
+	font-family: 'Shrikhand', cursive;
+	text-align: center;
+}
+
+#buttons {
+	text-align: center;
+}
+

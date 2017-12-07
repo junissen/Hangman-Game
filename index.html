@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang = 'en-us'>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Hangman</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat|Shrikhand" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Pathway+Gothic+One" rel="stylesheet">
+
+</head>
+<body>
+	<div class = "jumbotron text-center" id = "title">
+		<div id = "title_1">HANGMAN</div>
+		<div id = "title_2">Classic 80s Movies Edition</div>
+	
+	</div>
+
+	<div class = 'container'>
+
+		<div class = 'row'>
+
+			<div class = 'col-md-5'>
+		
+				<div id = 'fun_section'>
+					<div id = 'buttons'>
+						<button type="button" class="btn btn-light" id = "mute_button" >Mute</button>
+						<button type="button" class="btn btn-light" id = "unmute_button">Unmute</button>
+					</div>
+					<div id = 'audio'>
+					</div>
+					<br>
+					<h2 id = 'image_header'></h2>
+					<hr>
+					<div id = 'image'>
+					</div>
+					<br>
+				</div>
+			</div>
+
+			<div class = 'col-md-7'>
+
+				<div id = 'game'>
+					<p> Press any key to start playing </p>
+
+					<div id = 'wins'>
+						Wins: 
+					</div>
+
+					<br>
+
+					<div id = 'word'>
+						Current word: 
+						<br>
+					</div>
+
+					<br>
+
+					<div id = 'guess_number'>
+						Guesses: 
+					</div>
+
+					<br>
+
+					<div id = 'guess_letters'>
+						Letters guessed: <br>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>	
+	
+
+
+	<script type="text/javascript" src = "assets/javascript/game.js"></script>
+
+</body>
+</html>
