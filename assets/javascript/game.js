@@ -168,14 +168,18 @@ document.onkeyup = function(event) {
 
 	var current_choice = computer.current_word;
 
+	// Simplified version of testing if a letter was pressed: use keyCode of event!
 
-	if ((userGuess === "a") || (userGuess === "b") || (userGuess === "c") || (userGuess === "d") ||
-	(userGuess === "e") || (userGuess === "f") || (userGuess === "g") || (userGuess === "h") ||
-	(userGuess === "i") || (userGuess === "j") || (userGuess === "k") || (userGuess === "l") ||
-	(userGuess === "m") || (userGuess === "n") || (userGuess === "o") || (userGuess === "p") ||
-	(userGuess === "q") || (userGuess === "r") || (userGuess === "s") || (userGuess === "t") ||
-	(userGuess === "u") || (userGuess === "v") || (userGuess === "w") || (userGuess === "x") ||
-	(userGuess === "y") || (userGuess === "z")) {
+	if (event.keyCode >= 65 && event.keyCode <=90 ) {
+
+
+	// if ((userGuess === "a") || (userGuess === "b") || (userGuess === "c") || (userGuess === "d") ||
+	// (userGuess === "e") || (userGuess === "f") || (userGuess === "g") || (userGuess === "h") ||
+	// (userGuess === "i") || (userGuess === "j") || (userGuess === "k") || (userGuess === "l") ||
+	// (userGuess === "m") || (userGuess === "n") || (userGuess === "o") || (userGuess === "p") ||
+	// (userGuess === "q") || (userGuess === "r") || (userGuess === "s") || (userGuess === "t") ||
+	// (userGuess === "u") || (userGuess === "v") || (userGuess === "w") || (userGuess === "x") ||
+	// (userGuess === "y") || (userGuess === "z")) {
 
 		var index_word = indexesOf(current_choice, userGuess)
 
