@@ -152,10 +152,6 @@ function computerChoice() {
 
 	var word_splits = current_choice.split(' ')
 
-	console.log(word_splits)
-
-	console.log(word_splits.length)
-
 	for (var i = 0; i < word_splits.length; i ++) {
 		current_word = word_splits[i];
 		var new_word = document.createElement("div");
@@ -343,12 +339,3 @@ document.onkeyup = function(event) {
 
 
 computerChoice()
-
-
-test_string = "this is a test"
-for (var i = 0; i < test_string.length; i ++ ) {
-	if (test_string[i].match(/[a-z]/i) != null) {
-		test_string = test_string.replace(test_string[i], "0")
-	}
-}
-
