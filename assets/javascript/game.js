@@ -1,65 +1,93 @@
 // COMPUTER OBJECT
 var computer = {
-	options: 
-	["the goonies", 
-	"the breakfast club", 
-	"stand by me", 
-	"back to the future", 
-	"gremlins", 
-	"dirty dancing",
-	"the princess bride",
-	"heathers",
-	"footloose",
-	"the karate kid",
-	"flashdance",
-	"ghostbusters",
-	"raiders of the lost ark",
-	"the empire strikes back"],
 	wins: 0,
 	guesses: 10,
 	letters: [],
 	current_word: "none",
 	current_word_length: 0,
 	current_index: "none",
-	previous_options: [],
-	images: 
-	["img_goonies.jpg",
-	"img_breakfastclub.jpg",
-	"img_standbyme.jpg",
-	"img_backtothefuture.jpg",
-	"img_gremlins.jpg",
-	"img_dirtydancing.jpg",
-	"img_princessbride.jpg",
-	"img_heathers.jpg",
-	"img_footloose.jpg",
-	"img_karatekid.jpg",
-	"img_flashdance.jpg",
-	"img_ghostbusters.jpg",
-	"img_raiders.jpg",
-	"img_empire.jpg"],
-	audio: 
-	["aud_goonies.mp3",
-	"aud_breakfastclub.mp3",
-	"aud_standbyme.mp3",
-	"aud_backtothefuture.mp3",
-	"aud_gremlins.mp3",
-	"aud_dirtydancing.mp3",
-	"aud_princessbride.mp3",
-	"aud_heathers.mp3",
-	"aud_footloose.mp3",
-	"aud_karatekid.mp3",
-	"aud_flashdance.mp3",
-	"aud_ghostbusters.mp3",
-	"aud_raiders.mp3",
-	"aud_empire.mp3"]
-};
+	previous_options: []
+}
+
+var movies = [
+	{
+		"name": "the goonies",
+		"image": "img_goonies.jpg",
+		"audio": "aud_goonies.mp3"
+	}, 
+	{
+		"name": "the breakfast club",
+		"image": "img_breakfastclub.jpg",
+		"audio": "aud_breakfastclub.mp3"
+	},
+	{
+		"name": "stand by me",
+		"image": "img_standbyme.jpg",
+		"audio": "aud_standbyme.mp3"
+	},
+	{
+		"name": "back to the future",
+		"image": "img_backtothefuture.jpg",
+		"audio": "aud_backtothefuture.mp3"
+	},
+	{
+		"name": "gremlins",
+		"image": "img_gremlins.jpg",
+		"audio": "aud_gremlins.mp3"
+	},
+	{
+		"name": "dirty dancing",
+		"image": "img_dirtydancing.jpg",
+		"audio": "aud_dirtydancing.mp3"
+	},
+	{
+		"name": "the princess bride",
+		"image": "img_princessbride.jpg",
+		"audio": "aud_princessbride.mp3"
+	}, 
+	{
+		"name": "heathers",
+		"image": "img_heathers.jpg",
+		"audio": "aud_heathers.mp3"
+	},
+	{
+		"name": "footloose",
+		"image": "img_footloose.jpg",
+		"audio": "aud_footloose.mp3"
+	}, 
+	{
+		"name": "the karate kid",
+		"image": "img_karatekid.jpg",
+		"audio": "aud_karatekid.mp3"
+	}, 
+	{
+		"name": "flashdance",
+		"image": "img_flashdance.jpg",
+		"audio": "aud_flashdance.mp3"
+	}, 
+	{
+		"name": "ghostbusters",
+		"image": "img_ghostbusters.jpg",
+		"audio": "aud_ghostbusters.mp3"
+	}, 
+	{
+		"name": "raiders of the last ark",
+		"image": "img_raiders.jpg",
+		"audio": "aud_raiders.mp3"
+	}, 
+	{
+		"name": "the empire strikes back",
+		"image": "img_empire.jpg",
+		"audio": "aud_empire.mp3"
+	}
+]
 
 // FUNCTIONS TO BE CALLED
 
-function random_choice(array, previous_options) {
+function random_choice(previous_options) {
 
-	var full_array = [0,1,2,3,4,5,6,7,8,9,10,11,12,13];
-
+	var full_array = Array.from(Array(14).keys());
+	
 	if (previous_options.length > 0) {
 		for (var i = 0; i < previous_options.length; i++) {
 			if (full_array.indexOf(previous_options[i]) >= 0) {
@@ -74,7 +102,6 @@ function random_choice(array, previous_options) {
 
 	var random_choice = full_array[Math.floor(Math.random() * full_array.length)];
 
-	
 	return random_choice
 
 };
@@ -107,12 +134,14 @@ document.getElementById("unmute_button").onclick = function(event) {
 // FUNCTION TO CALL RANDOM HANGMAN WORD
 
 function computerChoice() {
-	var current_index = random_choice(computer.options, computer.previous_options);
+	var current_index = random_choice(computer.previous_options);
 	computer.current_index = current_index;
-	computer.current_word = computer.options[computer.current_index];
-	var current_choice = computer.current_word
+	computer.current_word = movies[computer.current_index].name;
 	computer.previous_options.push(computer.current_index);
+	
+	var current_choice = computer.current_word;
 	console.log(current_choice);
+
 	var head_word = document.getElementById("word");
 	var target_word = document.createElement("div");
 	target_word.setAttribute("id", "hangman_word");
@@ -121,29 +150,27 @@ function computerChoice() {
 
 	var word_length_nospace = 0
 
-	for (var i = 0; i < current_choice.length; i ++) {
+	var word_splits = current_choice.split(' ')
 
-		if ((current_choice[i] === "")|| (current_choice[i] === null) || (current_choice[i] === ' ')) {
-			var new_word = document.createElement("div");
-			new_word.setAttribute("id", "Div" + counter);
-			new_word.innerHTML = "&ensp; &ensp; &ensp;";
-			new_word.style.display = 'inline-block';
-			target_word.appendChild(new_word);
-			counter ++
-		}
-
-		else {
-			var new_word = document.createElement("div");
-			new_word.setAttribute("id", "Div" + counter);
-			new_word.innerHTML = "&ensp; ___ &ensp;";
-			new_word.style.display = 'inline-block';
-			target_word.appendChild(new_word);
-			counter++
-			word_length_nospace ++
-		}
+	for (var i = 0; i < word_splits.length; i ++) {
+		current_word = word_splits[i];
+		var new_word = document.createElement("div");
+		new_word.setAttribute("class", "new_word");
+		target_word.append(new_word);
+		new_word.style.display = 'inline-block';
 		
 
-	};
+		for (var j = 0; j < current_word.length; j ++) {
+			var new_letter = document.createElement("div");
+			new_letter.setAttribute("class", "letter")
+			new_letter.setAttribute("id", "Div" + counter)
+			new_letter.innerHTML = "_";
+			new_letter.style.display = 'inline-block';
+			new_word.append(new_letter)
+			counter ++
+			word_length_nospace ++
+		}
+	}
 
 	var guess_number = document.createElement("div");
 	guess_number.setAttribute("id", "Div_guessnumber");
@@ -166,20 +193,9 @@ function computerChoice() {
 document.onkeyup = function(event) {
 	var userGuess = event.key;
 
-	var current_choice = computer.current_word;
-
-	// Simplified version of testing if a letter was pressed: use keyCode of event!
+	var current_choice = (computer.current_word).replace(/\s/g,'')
 
 	if (event.keyCode >= 65 && event.keyCode <=90 ) {
-
-
-	// if ((userGuess === "a") || (userGuess === "b") || (userGuess === "c") || (userGuess === "d") ||
-	// (userGuess === "e") || (userGuess === "f") || (userGuess === "g") || (userGuess === "h") ||
-	// (userGuess === "i") || (userGuess === "j") || (userGuess === "k") || (userGuess === "l") ||
-	// (userGuess === "m") || (userGuess === "n") || (userGuess === "o") || (userGuess === "p") ||
-	// (userGuess === "q") || (userGuess === "r") || (userGuess === "s") || (userGuess === "t") ||
-	// (userGuess === "u") || (userGuess === "v") || (userGuess === "w") || (userGuess === "x") ||
-	// (userGuess === "y") || (userGuess === "z")) {
 
 		var index_word = indexesOf(current_choice, userGuess)
 
@@ -193,7 +209,7 @@ document.onkeyup = function(event) {
 				else {
 				var hangman_letter = document.getElementById("Div" + index_word[i]);
 				hangman_letter.setAttribute("id", "solved");
-				hangman_letter.innerHTML = "&ensp;" + userGuess + "&ensp;";
+				hangman_letter.innerHTML = userGuess;
 				hangman_letter.style.display = 'inline-block';
 				}
 			}
@@ -298,7 +314,7 @@ document.onkeyup = function(event) {
 		}
 
 
-		var img_source = 'assets/images/' + computer.images[computer.current_index];
+		var img_source = 'assets/images/' + movies[computer.current_index].image;
 		var img_div = document.createElement("img");
 		img_div.setAttribute("id", "new_image");
 		img_div.setAttribute("src", img_source);
@@ -306,18 +322,15 @@ document.onkeyup = function(event) {
 
 		var text_div = document.createElement("div");
 		text_div.setAttribute("id", "new_text");
-		text_div.innerHTML = computer.options[computer.current_index].toUpperCase();
+		text_div.innerHTML = (movies[computer.current_index].name).toUpperCase();
 		document.getElementById("image_header").appendChild(text_div);
 
-		var audio_source = 'assets/audio/' + computer.audio[computer.current_index];
+		var audio_source = 'assets/audio/' + movies[computer.current_index].audio;
 		var audio_div = document.createElement("audio");
 		audio_div.setAttribute("id", "new_audio");
 		audio_div.setAttribute("src", audio_source);
 		audio_div.play()
 		document.getElementById("audio").appendChild(audio_div);
-
-
-
 
 		computerChoice();
 	}
@@ -325,11 +338,4 @@ document.onkeyup = function(event) {
 };
 
 
-
-
-
 computerChoice()
-
-
-
-
