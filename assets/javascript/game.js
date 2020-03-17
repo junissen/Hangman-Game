@@ -3,6 +3,7 @@ var computer = {
 	wins: 0,
 	guesses: 10,
 	letters: [],
+	incorrect_guesses: [],
 	current_word: "none",
 	current_word_length: 0,
 	current_index: "none",
@@ -188,7 +189,7 @@ function computerChoice() {
 
 };
 
-// FUNCTION TO BE CALL WHEN LETTER IS CHOSEN
+// FUNCTION TO BE CALLED WHEN LETTER IS CHOSEN
 
 document.onkeyup = function(event) {
 	var userGuess = event.key;
@@ -220,18 +221,28 @@ document.onkeyup = function(event) {
 		else {
 			computer.guesses = computer.guesses-1 ;
 			computer.letters.push(userGuess);
-		}
+			computer.incorrect_guesses.push(userGuess);
 
-		var letter_list = document.getElementById("guess_letters");
-		var index_letter = computer.letters.indexOf(userGuess);
-
-		if (index_letter === (computer.letters.length - 1)) {
+			var letter_list = document.getElementById("guess_letters");
 			var new_letter = document.createElement("div");
 			new_letter.setAttribute("class", "Div_guessletters");
-			new_letter.innerHTML = computer.letters[index_letter] + "&ensp;";
+			new_letter.innerHTML = userGuess + "&ensp;";
 			new_letter.style.display = 'inline-block';
 			letter_list.appendChild(new_letter);
 		}
+
+		/*
+		var letter_list = document.getElementById("guess_letters");
+		var index_letter = computer.incorrect_guesses.indexOf(userGuess);
+
+		if (index_letter === (computer.incorrect_guesses.length - 1)) {
+			var new_letter = document.createElement("div");
+			new_letter.setAttribute("class", "Div_guessletters");
+			new_letter.innerHTML = computer.incorrect_guesses[index_letter] + "&ensp;";
+			new_letter.style.display = 'inline-block';
+			letter_list.appendChild(new_letter);
+		}
+		*/
 
 		var new_guess = document.getElementById("Div_guessnumber")
 		new_guess.innerHTML = computer.guesses
